@@ -1,6 +1,8 @@
 from qutip import *
 import numpy as np
 
+seed = 17
+
 X = sigmax()
 Y = sigmay()
 Z = sigmaz()
@@ -88,7 +90,8 @@ t_steps = np.linspace(0,(chargeTime/collisionNum),100)
 tau = np.linspace(0,1,collisionNum+1)
 
 #Realization Configs
-std_list = np.linspace(.1,.8,8)
+#std_list = np.linspace(.1,.8,8)
+std_list = np.array([1.2, 2.0])
 
 #1-0
 
@@ -96,6 +99,7 @@ N = 5
 fidelity1 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy1 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -127,6 +131,7 @@ N = 6
 fidelity20 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy20 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -157,6 +162,7 @@ N = 6
 fidelity21 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy21 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -187,6 +193,7 @@ N = 7
 fidelity30 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy30 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -217,6 +224,7 @@ N = 7
 fidelity33 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy33 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -247,6 +255,7 @@ N = 8
 fidelity40 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy40 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -277,6 +286,7 @@ N = 8
 fidelity44 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy44 = np.zeros(shape=(len(std_list), collisionNum+1))
 
+np.random.seed(seed)
 for i, sigma in enumerate(std_list):
 
     fid_ = np.zeros(shape=(realizations, collisionNum+1))
@@ -302,7 +312,9 @@ for i, sigma in enumerate(std_list):
     fidelity44[i,::] = np.mean(fid_, axis=0) 
     ergotropy44[i,::] = np.mean(erg_, axis=0)
 
+np.save(f'last_realization_big_data_seed_{seed}', (fid_, erg_))
+
 charger_names = ['1-0', '2-0', '2-1', '3-0', '3-3', '4-0', '4-4']
 fids = np.array([fidelity1, fidelity20, fidelity21, fidelity30, fidelity33, fidelity40, fidelity44])
 ergs = np.array([ergotropy1, ergotropy20, ergotropy21, ergotropy30, ergotropy33, ergotropy40, ergotropy44])
-np.save('gaussianIsing.npy', (fids, ergs))
+np.save(f'gaussianIsing{seed}.npy', (fids, ergs))
