@@ -134,8 +134,8 @@ for i, sigma in enumerate(std_list):
         fid_[j,::] = np.array(f)
         erg_[j,::] = np.array(e)
 
-    fidelity1[r,::] = np.mean(fid_, axis=0)
-    ergotropy1[r,::] = np.mean(erg_, axis=0)
+    fidelity1[i,::] = np.mean(fid_, axis=0)
+    ergotropy1[i,::] = np.mean(erg_, axis=0)
 
 #2-0
 N = 6
