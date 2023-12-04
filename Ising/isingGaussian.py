@@ -91,7 +91,7 @@ tau = np.linspace(0,1,collisionNum+1)
 
 #Realization Configs
 #std_list = np.linspace(.1,.8,8)
-std_list = np.array([1.2, 2.0])
+std_list = np.concatenate((np.linspace(.1,.8,8), np.array([1.2, 2])))
 
 #1-0
 
@@ -110,7 +110,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges1 = [[0,1,g[0]],[1,2,J[0]],[2,3,J[1]],[3,4,J[2]],[4,1,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -126,7 +126,6 @@ for i, sigma in enumerate(std_list):
     ergotropy1[i,::] = np.mean(erg_, axis=0)
 
 #2-0
-
 N = 6
 fidelity20 = np.zeros(shape=(len(std_list), collisionNum+1))
 ergotropy20 = np.zeros(shape=(len(std_list), collisionNum+1))
@@ -142,7 +141,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges20= [[0,2,g[0]],[1,3,g[1]],[2,3,J[0]],[3,4,J[1]],[4,5,J[2]],[5,2,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -173,7 +172,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges21= [[0,1,p[0]],[0,2,g[0]],[1,3,g[1]],[2,3,J[0]],[3,4,J[1]],[4,5,J[2]],[5,2,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -204,7 +203,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges30= [[0,3,g[0]],[1,4,g[1]],[2,5,g[2]],[3,4,J[0]],[4,5,J[1]],[5,6,J[2]],[6,3,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -235,7 +234,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges33= [[0,1,p[0]],[1,2,p[1]],[2,0,p[2]],[0,3,g[0]],[1,4,g[1]],[2,5,g[2]],[3,4,J[0]],[4,5,J[1]],[5,6,J[2]],[6,3,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -266,7 +265,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges40= [[0,4,g[0]],[1,5,g[1]],[2,6,g[2]],[3,7,g[3]],[4,5,J[0]],[5,6,J[1]],[6,7,J[2]],[7,4,J[3]]]
 
         H0 = Isingx(N0, edges0)
@@ -297,7 +296,7 @@ for i, sigma in enumerate(std_list):
         J = np.random.normal(loc=0, scale=sigma, size=N0)
         g = [1,1,1,1]
         p = [1,1,1,1]
-        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,1,J[3]]]
+        edges0 = [[0,1,J[0]],[1,2,J[1]],[2,3,J[2]],[3,0,J[3]]]
         edges44= [[0,1,p[0]],[1,2,p[1]],[2,3,p[2]],[3,1,p[3]],[0,4,g[0]],[1,5,g[1]],[2,6,g[2]],[3,7,g[3]],[4,5,J[0]],[5,6,J[1]],[6,7,J[2]],[7,4,J[3]]]
 
         H0 = Isingx(N0, edges0)
